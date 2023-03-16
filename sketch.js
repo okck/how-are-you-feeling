@@ -44,8 +44,6 @@ console.log(checkCookie("radii"));
 console.log(getCookie("radii"));
 console.log(checkCookie("sliderColor"));
 
-
-
 if (checkCookie("radii")) {
   cookieRadiiArrayString = getCookie("radii");
 } else {
@@ -87,7 +85,6 @@ if (checkCookie("ms")) {
 console.log(JSON.parse(cookieTimeArrayString));
 timeArray = JSON.parse(cookieTimeArrayString);
 
-
 if (checkCookie("sliderColor")) {
   cookieSliderColor = getCookie("sliderColor");
 } else {
@@ -99,22 +96,15 @@ if (checkCookie("sliderBgColor")) {
   cookieSliderBgColor = 80;
 }
 
-
-
-
-
-
-
 let myFont;
 function preload() {
   loadFont('assets/PPMondwest-Regular.otf');
 }
 
 function setup() {
-
-    let myDiv = createDiv('how are you feeling?');
-    myDiv.style('font-family', 'PPMondwest-Regular');
-    myDiv.addClass('text');
+  let myDiv = createDiv('how are you feeling?');
+  myDiv.style('font-family', 'PPMondwest-Regular');
+  myDiv.addClass('text');
 
   sliderColor = createSlider(175, 325, parseInt(cookieSliderColor));
   sliderBgColor = createSlider(0, 80, parseInt(cookieSliderBgColor));
@@ -151,37 +141,23 @@ function draw() {
   background(bgVal);
 
   for (let i=0; i < rArray.length; i++) {
-
     let timeDiff = onLoadTime - timeArray[i];
-    // console.log(timeDiff);
-
-    // milliseconds
-    // let opa = map(msDiff, 0, 604800000, 5, 0);
-    // let opa = map(msDiff, 0, 20000, 0, 5);
-    // let opa = map(msDiff, 0, 120000, 1, 0);
 
     // minutes
-    let opa = map(timeDiff, 0, 30, 1, 0);
-    // let opa = map(timeDiff, 0, 1, 1, 10);
-
-    // drawGradient(random(1000), random(1000), rArray[i], hArray[i]);
-    // drawGradient(xArray[i], yArray[i], rArray[i], hArray[i], random(.1, 2));
+    // let opa = map(timeDiff, 0, 30, 1, 0);
+    let opa = map(timeDiff, 0, 10080, 1, 0);
 
     drawGradient(xArray[i], yArray[i], rArray[i], hArray[i], opa);
   }
 }
 // setCookie("sliderBgColor", bgVal, 999);
 
-
-
-
 function mousePressed() {
-
   if (mouseY < (.92 * height)) {
 
     // get radius
     let radius = int(random(25, 150));
-    console.log(radius);
+    // console.log(radius);
 
     if (rArray.length < 220) {
       rArray.push(radius);
@@ -189,24 +165,21 @@ function mousePressed() {
       let rRemove = rArray.shift();
       rArray[219] = radius;
     }
-    // rArray.push(radius);
-    console.log(rArray);
+    // console.log(rArray);
   
     // get color
     let val = sliderColor.value();
     let h = val;
     setCookie("sliderColor", val, 999);
 
-    console.log(h);
-
+    // console.log(h);
     if (hArray.length < 220) {
       hArray.push(h);
     } else {
       let hRemove = hArray.shift();
       hArray[219] = h;
     }
-    // hArray.push(h);
-    console.log(hArray);
+    // console.log(hArray);
 
     // log mousePos
     if (xArray.length < 220) {
@@ -215,15 +188,12 @@ function mousePressed() {
       let xRemove = xArray.shift();
       xArray[219] = mouseX;
     }
-    // xArray.push(mouseX);
-
     if (yArray.length < 220) {
       yArray.push(mouseY);
     } else {
       let yRemove = yArray.shift();
       yArray[219] = mouseY;
     }
-    // yArray.push(mouseY);
 
     // get current Milliseconds
     let d = new Date();
@@ -235,14 +205,13 @@ function mousePressed() {
       let timeRemove = timeArray.shift();
       timeArray[219] = (((d.getTime() / 1000) / 60).toFixed(2));
     }
-    // timeArray.push(((d.getTime() / 1000) / 60)).toFixed(2);
 
     // draw orb
     drawGradient(mouseX, mouseY, radius, h, 1);
     console.log(mouseX, mouseY);
 
-    console.log(rArray);
-    console.log(JSON.stringify(rArray));
+    // console.log(rArray);
+    // console.log(JSON.stringify(rArray));
 
     setCookie("radii", JSON.stringify(rArray), 999);
     setCookie("colors", JSON.stringify(hArray), 999);
@@ -261,7 +230,6 @@ function drawGradient(x, y, radius, h, opa) {
 }
 
 // cookie functions
-
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
