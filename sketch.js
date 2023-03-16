@@ -296,15 +296,4 @@ function checkCookie(cname) {
 function deleteCookies() {
   deleteAllCookies();
   location.reload();
-  hArray.length = 0;
-  rArray.length = 0;
-  xArray.length = 0;
-  yArray.length = 0;
-  timeArray.length = 0;
-
-  cookieRadiiArrayString.length = 0;
-  cookieColorsArrayString.length = 0;
-  cookieXsArrayString.length = 0;
-  cookieYsArrayString.length = 0;
-  cookieTimeArrayString.length = 0;
 }
