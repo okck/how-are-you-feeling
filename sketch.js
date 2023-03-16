@@ -139,10 +139,10 @@ function setup() {
   noStroke();
   ellipseMode(RADIUS);
 }
-// let sliderBgEl = document.getElementById('sliderBgColor');
-// sliderBgEl.addEventListener('input', function() {
-//   console.log(sliderBgEl.val);
-// })
+let sliderBgEl = document.getElementById('sliderBgColor');
+sliderBgEl.addEventListener('input', function() {
+  console.log(sliderBgEl.val);
+})
 
 function draw() {
   bgVal = sliderBgColor.value();
@@ -296,9 +296,9 @@ function checkCookie(cname) {
 function deleteCookies() {
   deleteAllCookies();
   location.reload();
-  hArray = [];
-  rArray = [];
-  xArray = [];
-  yArray = [];
-  timeArray = [];
+  hArray.length = 0;
+  rArray.length = 0;
+  xArray.length = 0;
+  yArray.length = 0;
+  timeArray.length = 0;
 }
