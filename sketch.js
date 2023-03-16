@@ -139,10 +139,10 @@ function setup() {
   noStroke();
   ellipseMode(RADIUS);
 }
-let sliderBgEl = document.getElementById('sliderBgColor');
-sliderBgEl.addEventListener('input', function() {
-  console.log(sliderBgEl.val);
-})
+// let sliderBgEl = document.getElementById('sliderBgColor');
+// sliderBgEl.addEventListener('input', function() {
+//   console.log(sliderBgEl.val);
+// })
 
 function draw() {
   bgVal = sliderBgColor.value();
