@@ -296,4 +296,9 @@ function checkCookie(cname) {
 function deleteCookies() {
   deleteAllCookies();
   location.reload();
+  hArray = [];
+  rArray = [];
+  xArray = [];
+  yArray = [];
+  timeArray = [];
 }
