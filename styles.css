@@ -2,6 +2,9 @@
   margin: 0;
   padding: 0;
 }
+body {
+  overflow: hidden;
+}
 .text {
   width: 100vw;
   text-align: center;
