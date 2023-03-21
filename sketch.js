@@ -1,13 +1,36 @@
 console.log(document.cookie);
 
-const deleteAllCookies = () => {
-  const cookies = document.cookie.split(";");
+// const deleteAllCookies = () => {
+//   const cookies = document.cookie.split(";");
 
-  for (const cookie of cookies) {
-    const eqPos = cookie.indexOf("=");
-    const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-  }
+//   for (const cookie of cookies) {
+//     const eqPos = cookie.indexOf("=");
+//     const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+//     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+//   }
+// }
+function deleteAllCookies(cookieName)
+{
+    var domainParts = window.location.hostname.split('.').reverse();
+    var topLevelDomain = domainParts.shift();
+    var domains = [];
+    for(let domainPart of domainParts)
+    {
+        let prevDomain = domains.slice(-1)[0] || topLevelDomain;
+        domains.push(domainPart + '.' + prevDomain);
+    }
+
+    var path = window.location.pathname;
+    var paths = ['/'], pathLength = 1, nextSlashPosition;
+    while( (nextSlashPosition = path.indexOf('/', pathLength)) != -1 )
+    {
+        pathLength = nextSlashPosition + 1;
+        paths.push(path.substr(0, pathLength));
+    }
+
+    for(let path of paths)
+        for(let domain of domains)
+            document.cookie = `${cookieName}=; path=${path}; domain=${domain}; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
 }
 
 let deleteCookiesEl = document.getElementById('deleteAll');
